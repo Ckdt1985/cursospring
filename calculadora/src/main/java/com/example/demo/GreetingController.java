@@ -12,7 +12,6 @@ public class GreetingController {
         @RequestParam(name="operando2", required=false, defaultValue="") String op2, 
         Model model) {
             int resultado = this.resolve(op1,operacion,op2);
-
             model.addAttribute("operando1", op1);
             model.addAttribute("operacion", operacion);
             model.addAttribute("operando2", op2);
