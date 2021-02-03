@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import java.math.BigDecimal;
 
 import java.util.List;
 import java.util.Map;
@@ -57,12 +58,19 @@ public class BookController {
         return repository.findById(id).map(x -> {
 
             String author = update.get("author");
+            String name = update.get("name");
+            String price = update.get("price");
             if (!StringUtils.isEmpty(author)) {
                 x.setAuthor(author);
-
-                // better create a custom method to update a value = :newValue where id = :id
                 return repository.save(x);
-            } else {
+            } else if(!StringUtils.isEmpty(name)){
+                x.setName(name);
+                return repository.save(x);
+            } else if(!StringUtils.isEmpty(price)){
+                x.setPrice(new BigDecimal(price));
+                return repository.save(x);
+            }
+            else {
                 throw new BookUnSupportedFieldPatchException(update.keySet());
             }
 
