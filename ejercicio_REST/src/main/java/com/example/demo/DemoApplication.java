@@ -20,9 +20,9 @@ public class DemoApplication {
     @Bean
     CommandLineRunner initDatabase(PaisRepository repository) {
         return args -> {
-            repository.save(new Pais("A Guide to the Bodhisattva Way of Life", "Santideva", new BigDecimal("15.41")));
-            repository.save(new Pais("The Life-Changing Magic of Tidying Up", "Marie Kondo", new BigDecimal("9.69")));
-            repository.save(new Pais("Refactoring: Improving the Design of Existing Code", "Martin Fowler", new BigDecimal("47.99")));
+            repository.save(new Pais("Afghanistan", "Kabul", new BigDecimal(652230.0), 27657145));
+            repository.save(new Pais("Albania", "Tirana", new BigDecimal(28748.0), 2886026));
+            repository.save(new Pais("Andorra", "Andorra la Vella", new BigDecimal(468.0), 78014));
         };
     }
 }

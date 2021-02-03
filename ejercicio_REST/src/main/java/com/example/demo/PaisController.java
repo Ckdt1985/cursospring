@@ -17,13 +17,13 @@ public class PaisController {
     private PaisRepository repository;
 
     // Find
-    @GetMapping("/Paiss")
+    @GetMapping("/paises")
     List<Pais> findAll() {
         return repository.findAll();
     }
 
     // Save
-    @PostMapping("/Paiss")
+    @PostMapping("/paises")
     // return 201 instead of 200
     @ResponseStatus(HttpStatus.CREATED)
     Pais newPais(@RequestBody Pais newPais) {
@@ -31,43 +31,35 @@ public class PaisController {
     }
 
     // Find
-    @GetMapping("/Paiss/{id}")
+    @GetMapping("/paises/{id}")
     Pais findOne(@PathVariable Long id) {
         return repository.findById(id).orElseThrow(() -> new PaisNotFoundException(id));
     }
 
     // Save or update
-    @PutMapping("/Paiss/{id}")
-    Pais saveOrUpdate(@RequestBody Pais newPais, @PathVariable Long id) {
+    // @PutMapping("/paises/{id}")
+    // Pais saveOrUpdate(@RequestBody Pais newPais, @PathVariable Long id) {
 
-        return repository.findById(id).map(x -> {
-            x.setName(newPais.getName());
-            x.setAuthor(newPais.getAuthor());
-            x.setPrice(newPais.getPrice());
-            return repository.save(x);
-        }).orElseGet(() -> {
-            newPais.setId(id);
-            return repository.save(newPais);
-        });
-    }
+    //     return repository.findById(id).map(x -> {
+    //         x.setName(newPais.getName());
+    //         x.setAuthor(newPais.getAuthor());
+    //         x.setPrice(newPais.getPrice());
+    //         return repository.save(x);
+    //     }).orElseGet(() -> {
+    //         newPais.setId(id);
+    //         return repository.save(newPais);
+    //     });
+    // }
 
     // update author only
-    @PatchMapping("/Paiss/{id}")
+    @PatchMapping("/paises/{id}")
     Pais patch(@RequestBody Map<String, String> update, @PathVariable Long id) {
 
         return repository.findById(id).map(x -> {
 
-            String author = update.get("author");
-            String name = update.get("name");
-            String price = update.get("price");
-            if (!StringUtils.isEmpty(author)) {
-                x.setAuthor(author);
-                return repository.save(x);
-            } else if(!StringUtils.isEmpty(name)){
-                x.setName(name);
-                return repository.save(x);
-            } else if(!StringUtils.isEmpty(price)){
-                x.setPrice(new BigDecimal(price));
+            String poblacion = update.get("poblacion");
+            if(!StringUtils.isEmpty(poblacion)){
+                x.setPoblacion(new Integer(poblacion));
                 return repository.save(x);
             }
             else {
@@ -80,7 +72,7 @@ public class PaisController {
 
     }
 
-    @DeleteMapping("/Paiss/{id}")
+    @DeleteMapping("/paises/{id}")
     void deletePais(@PathVariable Long id) {
         repository.deleteById(id);
     }
