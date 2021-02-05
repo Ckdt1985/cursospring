@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 
 @Entity
-public class Pais {
+public class Book {
 
     @Id
     @GeneratedValue
@@ -16,17 +16,17 @@ public class Pais {
     private BigDecimal price;
 
     // avoid this "No default constructor for entity"
-    public Pais() {
+    public Book() {
     }
 
-    public Pais(Long id, String name, String author, BigDecimal price) {
+    public Book(Long id, String name, String author, BigDecimal price) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.price = price;
     }
 
-    public Pais(String name, String author, BigDecimal price) {
+    public Book(String name, String author, BigDecimal price) {
         this.name = name;
         this.author = author;
         this.price = price;
@@ -66,7 +66,7 @@ public class Pais {
 
     @Override
     public String toString() {
-        return "Pais{" +
+        return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +

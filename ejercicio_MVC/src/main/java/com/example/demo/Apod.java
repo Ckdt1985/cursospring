@@ -3,8 +3,6 @@ package com.example.demo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Column;
 
 @Entity
 public class Apod {
@@ -14,6 +12,7 @@ public class Apod {
     private Long id;
     private String titulo;
     private String descripcion;
+
     private String fecha;
     private String url;
 
