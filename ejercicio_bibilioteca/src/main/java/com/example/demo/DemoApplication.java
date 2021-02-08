@@ -18,13 +18,15 @@ public class DemoApplication {
     // run this only on profile 'demo', avoid run this in test
     // @Profile("demo")
     @Bean
-    CommandLineRunner initDatabase(BookRepository bookRepository, UserRepository userRepository) {
+    CommandLineRunner initDatabase(BookRepository bookRepository, UserRepository userRepository, FondoLibroRepository fondo) {
         return args -> {
             bookRepository.save(new Book("A Guide to the Bodhisattva Way of Life", "Santideva", "REF001"));
             bookRepository.save(new Book("The Life-Changing Magic of Tidying Up", "Marie Kondo", "REF002"));
             bookRepository.save(new Book("Refactoring: Improving the Design of Existing Code", "Martin Fowler", "REF003"));
 
             userRepository.save(new User("Daniel", "Rojo", 0000001));
+            fondo.save(new FondoLibro(1L, 0));
+
         };
     }
 }

@@ -17,13 +17,13 @@ public class UserController {
     private UserRepository repository;
 
     // Find
-    @GetMapping("/api/v1/users")
+    @GetMapping("/api/v1/usuarios")
     List<User> findAll() {
         return repository.findAll();
     }
 
     // Save
-    @PostMapping("/api/v1/users")
+    @PostMapping("/api/v1/usuarios")
     // return 201 instead of 200
     @ResponseStatus(HttpStatus.CREATED)
     User newUser(@RequestBody User newUser) {
@@ -31,13 +31,13 @@ public class UserController {
     }
 
     // Find
-    @GetMapping("/api/v1/users/{id}")
+    @GetMapping("/api/v1/usuarios/{id}")
     User findOne(@PathVariable Long id) {
         return repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     // Save or update
-    @PutMapping("/api/v1/users/{id}")
+    @PutMapping("/api/v1/usuarios/{id}")
     User saveOrUpdate(@RequestBody User newUser, @PathVariable Long id) {
 
         return repository.findById(id).map(x -> {
@@ -52,7 +52,7 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/api/v1/users/{id}")
+    @DeleteMapping("/api/v1/usuarios/{id}")
     void deleteUser(@PathVariable Long id) {
         repository.deleteById(id);
     }
