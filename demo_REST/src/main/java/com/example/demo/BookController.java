@@ -13,17 +13,16 @@ import java.util.Map;
 public class BookController {
 
     @Autowired
-
     private BookRepository repository;
 
     // Find
-    @GetMapping("/books")
+    @GetMapping("/api/v1/books")
     List<Book> findAll() {
         return repository.findAll();
     }
 
     // Save
-    @PostMapping("/books")
+    @PostMapping("/api/v1/books")
     // return 201 instead of 200
     @ResponseStatus(HttpStatus.CREATED)
     Book newBook(@RequestBody Book newBook) {
@@ -31,13 +30,13 @@ public class BookController {
     }
 
     // Find
-    @GetMapping("/books/{id}")
+    @GetMapping("/api/v1/books/{id}")
     Book findOne(@PathVariable Long id) {
         return repository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
     }
 
     // Save or update
-    @PutMapping("/books/{id}")
+    @PutMapping("/api/v1/books/{id}")
     Book saveOrUpdate(@RequestBody Book newBook, @PathVariable Long id) {
 
         return repository.findById(id).map(x -> {
@@ -52,7 +51,7 @@ public class BookController {
     }
 
     // update author only
-    @PatchMapping("/books/{id}")
+    @PatchMapping("/api/v1/books/{id}")
     Book patch(@RequestBody Map<String, String> update, @PathVariable Long id) {
 
         return repository.findById(id).map(x -> {
@@ -80,7 +79,7 @@ public class BookController {
 
     }
 
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/api/v1/books/{id}")
     void deleteBook(@PathVariable Long id) {
         repository.deleteById(id);
     }
