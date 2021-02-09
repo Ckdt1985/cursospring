@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Resultado de usuario</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <h1>Resultado</h1>
+    <ul th:each="usuario: ${usuarios}">
+        <li th:text="${usuario.firstName}" />
+        <li th:text="${usuario.lastName}" />
+        <li th:text="${usuario.carnetNumber}" />
+    </ul>
+    <a href="/adduser">Añade nuevo usuario</a>
+</body>
+
+</html>
