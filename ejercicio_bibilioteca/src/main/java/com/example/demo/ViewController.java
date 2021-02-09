@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import org.springframework.stereotype.Controller;
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,10 +28,14 @@ public class ViewController {
 	}
 
 	@PostMapping("/resultado")
-	public String muestraResultados(@ModelAttribute User nuevoUsuario, Model model) {
-		repository.save(nuevoUsuario);
-		model.addAttribute("usuarios", repository.findAll());
-		return "result.html";
+	public String muestraResultados(@Valid @ModelAttribute User nuevoUsuario, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "error.html";
+		}else {
+			repository.save(nuevoUsuario);
+			model.addAttribute("usuarios", repository.findAll());
+			return "result.html";
+		}
 	}
 
     @GetMapping("/resultado")

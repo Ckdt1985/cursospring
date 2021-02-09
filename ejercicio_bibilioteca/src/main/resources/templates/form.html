@@ -8,8 +8,11 @@
 	<h1>Formunlario</h1>
     <form action="#" th:action="@{/resultado}" th:object="${newUser}" method="post">
         <p>Nombre: <input type="text" th:field="*{firstName}" /></p>
+        <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="alert alert-danger" role="alert">Error en nombre</div>
         <p>Apellido: <input type="text" th:field="*{lastName}" /></p>
+        <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="alert alert-danger" role="alert">Error en nombre</div>
         <p>Carnet: <input type="number" th:field="*{carnetNumber}" /></p>
+        <div th:if="${#fields.hasErrors('carnetNumber')}" th:errors="*{carnetNumber}" class="alert alert-danger" role="alert">Error en nombre</div>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 </body>
