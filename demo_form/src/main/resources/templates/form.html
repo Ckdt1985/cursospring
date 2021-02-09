@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head> 
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Formulario de usuario</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Form</h1>
+	<h1>Formunlario</h1>
     <form action="#" th:action="@{/resultado}" th:object="${newUser}" method="post">
         <p>Nombre: <input type="text" th:field="*{nombre}" /></p>
         <p>Apellido: <input type="text" th:field="*{apellido}" /></p>

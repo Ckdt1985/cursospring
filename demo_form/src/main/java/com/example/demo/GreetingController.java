@@ -9,14 +9,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class GreetingController {
 
+    @GetMapping("/index")
+	public String muestraIndice(Model model) {
+		return "index";
+	}
+
 	@GetMapping("/adduser")
-	public String greetingForm(Model model) {
+	public String muestraFormulario(Model model) {
 		model.addAttribute("newUser", new Usuario());
 		return "form";
 	}
 
 	@PostMapping("/resultado")
-	public String greetingSubmit(@ModelAttribute Usuario nuevoUsuario, Model model) {
+	public String muestraResultados(@ModelAttribute Usuario nuevoUsuario, Model model) {
+		model.addAttribute("usuario", nuevoUsuario);
+		return "result";
+	}
+
+    @GetMapping("/resultado")
+	public String muestraResultadosConGet(@ModelAttribute Usuario nuevoUsuario, Model model) {
 		model.addAttribute("usuario", nuevoUsuario);
 		return "result";
 	}
