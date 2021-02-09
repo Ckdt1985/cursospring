@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Form</h1>
-    <form action="#" th:action="@{/newlibro}" th:object="${libro}" method="post">
+    <form action="#" th:action="@{/listalibros}" th:object="${libro}" method="post">
     	<p>Nombre: <input type="text" th:field="*{name}" /></p>
         <p>Autor: <input type="text" th:field="*{author}" /></p>
         <p>Precio: <input type="number" th:field="*{price}" /></p>

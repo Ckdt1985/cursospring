@@ -13,17 +13,28 @@ public class ViewController {
     @Autowired
     private BookRepository repository;
 
+    @GetMapping("/index")
+	public String index() {
+		return "index";
+	}
+
+    @GetMapping("/listalibros")
+	public String listLibros(Model model) {
+        model.addAttribute("libros", repository.findAll());
+		return "listalibros";
+	}
+
 	@GetMapping("/nuevolibro")
 	public String greetingForm(Model model) {
 		model.addAttribute("libro", new Book());
 		return "formlibro";
 	}
 
-	@PostMapping("/newlibro")
+	@PostMapping("/listalibros")
 	public String greetingSubmit(@ModelAttribute Book book, Model model) {
         repository.save(book);
 		model.addAttribute("libros", repository.findAll());
-		return "result";
+		return "listalibros";
 	}
 
 }

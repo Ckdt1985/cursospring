@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Libros</h1>
+    
+    <ul th:each="libro: ${libros}">
+        <li th:text="${libro.name}" />
+        <li th:text="${libro.author}" />
+        <li th:text="${libro.price}" />
+    </ul>
+    <a href="/nuevolibro">Añade otro libro</a>
+</body>
+</html>
